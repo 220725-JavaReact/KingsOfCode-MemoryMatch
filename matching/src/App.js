@@ -8,6 +8,7 @@ import Status from './components/Status';
 
 import { user } from './mock_data';
 import { getCards } from './services/CardService';
+import { CreateGame } from './services/GameService';
 
 
 
@@ -69,7 +70,10 @@ function App() {
       } else {
         setTimeout(() => resetTurn(), 1000)
       }
-      
+
+    }
+    if (cards.every(c => (c.match === true))) {
+      CreateGame(turns, cards.length / 2, user.user_id);
     }
   }, [choiceOne, choiceTwo])
 
