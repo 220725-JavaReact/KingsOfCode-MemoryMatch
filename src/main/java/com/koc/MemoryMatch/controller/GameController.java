@@ -15,40 +15,49 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.koc.MemoryMatch.dao.GameDao;
 import com.koc.MemoryMatch.models.Game;
+import com.koc.MemoryMatch.utils.Logger;
 import com.koc.MemoryMatch.exceptions.*;
 
 @RestController
 @RequestMapping("/memorymatch/games")
 public class GameController {
 	
+	Logger logger = Logger.getInstance();
+	
 	@Autowired
 	private GameDao gameDao;
 	
 	@GetMapping
 	public List<Game> getAllGames(){
+		logger.log(Logger.LogLevel.info, "Get all the games");	
 		return this.gameDao.findAll();
 	}
 	
 	@GetMapping("/{game_id}")
 	public Game getGameById(@PathVariable (value = "game_id") long gameId) {
-		return this.gameDao
+		Game existingGame = this.gameDao
 				.findById(gameId)
 				.orElseThrow(() -> new ResourceNotFoundException("Game not found with id : " + gameId));
+		logger.log(Logger.LogLevel.info, "Get game by id = " + existingGame.toString());
+		return existingGame;
 	}
 	
 	@PostMapping
 	public Game createGame(@RequestBody Game game) {
-		return this.gameDao.save(game);
+		Game savedGame = this.gameDao.save(game);
+		logger.log(Logger.LogLevel.info, "Saved game = " + savedGame.toString());
+		return savedGame;
 	}
 	
 	@PutMapping("/{game_id}")
 	public Game updateGame(@RequestBody Game game, @PathVariable ("game_id") long gameId) {
 		Game existingGame = this.gameDao.findById( gameId)
 		.orElseThrow(() -> new ResourceNotFoundException("Game not found with id : " + gameId));
-		existingGame.setUserId(game.getUserId());
+		//existingGame.setUserId(game.getUserId());
 		existingGame.setTurn(game.getTurn());
-		existingGame.setDeck(game.getDeck());
+		//existingGame.setDeck(game.getDeck());
 		existingGame.setScore(game.getScore());		
+		logger.log(Logger.LogLevel.info, "Updated game = " + existingGame.toString());
 		return this.gameDao.save(existingGame);
 	}
 	
@@ -57,6 +66,7 @@ public class GameController {
 		Game existingGame = this.gameDao.findById(gameId)
 				.orElseThrow(() -> new ResourceNotFoundException("Game not found with id : " + gameId));
 		this.gameDao.delete(existingGame);
+		logger.log(Logger.LogLevel.info, "Deleted game = " + existingGame.toString());
 		return ResponseEntity.ok().build();	
 	}
 }
