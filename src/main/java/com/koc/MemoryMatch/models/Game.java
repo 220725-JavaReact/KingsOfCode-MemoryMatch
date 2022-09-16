@@ -13,75 +13,75 @@ public class Game {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int game_id;
+	private long game_id;
 
 	@Column(name = "user_id")
-	private int user_id;
+	private long user_id;
 
-	@Column(name = "turns")
-	private int turns;
+	@Column(name = "turn")
+	private int turn;
 
-	@Column(name = "deck_size")
-	private int deck_size;
+	@Column(name = "deck")
+	private int deck;
 
 	@Column(name = "score")
-	private long score;
+	private double score;
 
 	public Game() {
 	}
 
-	public Game(int user_id, int turns, int deck_size, long score) {
+	public Game(int user_id, int turn, int deck, double score) {
 		super();
 		this.user_id = user_id;
-		this.turns = turns;
-		this.deck_size = deck_size;
+		this.turn = turn;
+		this.deck = deck;
 		this.score = score;
 	}
 	
-	public int getGameId() {
+	public long getGameId() {
 		return game_id;
 	}
 
-	public void setGameId(int game_id) {
+	public void setGameId(long game_id) {
 		this.game_id = game_id;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return user_id;
 	}
 
-	public void setUserId(int user_id) {
+	public void setUserId(long user_id) {
 		this.user_id = user_id;
 	}
 
-	public int getTurns() {
-		return turns;
+	public int getTurn() {
+		return turn;
 	}
 
-	public void setTurns(int turns) {
-		this.turns = turns;
+	public void setTurn(int turn) {
+		this.turn = turn;
 	}
 
-	public int getDeckSize() {
-		return deck_size;
+	public int getDeck() {
+		return deck;
 	}
 
-	public void setDeckSize(int deck_size) {
-		this.deck_size = deck_size;
+	public void setDeck(int deck) {
+		this.deck = deck;
 	}
 
-	public long getScore() {
+	public double getScore() {
 		return score;
 	}
 
-	public void setScore(long score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 
 	@Override
 	public String toString() {
-		return "User{" + "game_id=" + this.game_id + ", user_id=" + this.user_id + ", turns=" + this.turns
-				+ ", deck_size=" + this.deck_size + ", score=" + this.score + "}";
+		return "User{" + "game_id=" + this.game_id + ", user_id=" + this.user_id + ", turn=" + this.turn
+				+ ", deck=" + this.deck + ", score=" + this.score + "}";
 
 	}
 }

@@ -13,7 +13,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int user_id;
+	private long user_id;
 	
 	@Column(name = "name")
 	private String name;
@@ -21,28 +21,28 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "username")
-	private String username;
+	@Column(name = "login")
+	private String login;
 	
-	@Column(name = "user_password")
-	private String user_password;
+	@Column(name = "password")
+	private String password;
 
 	public User() {
 	}
 
-	public User(String name, String email, String username, String user_password) {
+	public User(String name, String email, String login, String password) {
 		super();
 		this.name = name;
 		this.email = email;
-		this.username = username;
-		this.user_password = user_password;
-	}
-
-	public long getUserId() {
+		this.name = login;
+		this.password = password;
+	}	
+	
+	public long getId() {
 		return user_id;
 	}
 
-	public void setUserId(int user_id) {
+	public void setId(long user_id) {
 		this.user_id = user_id;
 	}
 
@@ -62,26 +62,26 @@ public class User {
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public String getUserPassword() {
-		return user_password;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserPassword(String user_password) {
-		this.user_password = user_password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override
 	public String toString() {
-		return "User{" + "user_id=" + this.user_id + ", name=" + this.name + ",  email=" + this.email + ", username="
-				+ this.username + ", user_password=" + this.user_password + "}";
+		return "User{" + "user_id=" + this.user_id + ", name=" + this.name + ",  email=" + this.email + ", login="
+				+ this.login + ", password=" + this.password + "}";
 
 	}
 
