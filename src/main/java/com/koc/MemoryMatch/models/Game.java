@@ -7,12 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.koc.MemoryMatch.utils.Logger;
+
 @Entity
 @Table(name = "games")
-public class Game {
+public class Game {	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "game_id")
 	private long game_id;
 
 	@Column(name = "user_id")
@@ -30,8 +33,17 @@ public class Game {
 	public Game() {
 	}
 
-	public Game(int user_id, int turn, int deck, double score) {
+	public Game(long user_id, int turn, int deck, double score) {
 		super();
+		this.user_id = user_id;
+		this.turn = turn;
+		this.deck = deck;
+		this.score = score;
+	}
+	
+	public Game(long game_id, long user_id, int turn, int deck, double score) {
+		super();
+		this.game_id = game_id;
 		this.user_id = user_id;
 		this.turn = turn;
 		this.deck = deck;
