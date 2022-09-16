@@ -1,18 +1,36 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Card from './components/Card';
+import Level from './components/Level';
+import OverlayMessage from './components/OverlayMessage';
+import Status from './components/Status';
 
-// import { cards } from './mock_data';
+
+import { user } from './mock_data';
 import { getCards } from './services/CardService';
 
 
 
 function App() {
   // cards infomration
-  const [cards, setCards] = useState([])
-  const [turns, setTurns] = useState(0)
 
-  const getCardsInfo = (num) => {
+  const [cards, setCards] = useState([])
+  const [player, setPlayer] = useState([])
+  const [difficulity, setDifficulity] = useState("Choose the difficulity level")
+  const [turns, setTurns] = useState(0)
+  const [disabled, setDisabled] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // get user info from API
+  const getPlayerInfo = () => {
+    // write code here
+    // ...
+    // mock user data
+    setPlayer(user)
+  }
+
+  const getCardsInfo = (num, level) => {
+    setDifficulity(level)
     getCards(num)
       .then(get_cards => {
         const shuffleCards = [...get_cards.cards, ...get_cards.cards]
@@ -33,7 +51,9 @@ function App() {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
   }
   useEffect(() => {
+    getPlayerInfo()
     if (choiceOne && choiceTwo) {
+      setDisabled(true)
       if (choiceOne.code === choiceTwo.code) {
         setCards(e => {
           return e.map(card => {
@@ -45,12 +65,11 @@ function App() {
           })
         })
         console.log('Match!')
-        resetTurn()
+        setTimeout(() => resetTurn(), 1000)
       } else {
-        console.log('Nahh')
-        resetTurn()
+        setTimeout(() => resetTurn(), 1000)
       }
-
+      
     }
   }, [choiceOne, choiceTwo])
 
@@ -59,18 +78,32 @@ function App() {
     setChoiceOne(null)
     setChoiceTwo(null)
     setTurns(prevTurns => prevTurns + 1)
+    setDisabled(false)
   }
 
   return (
     <div className="App">
       <h1>Memory Match</h1>
-      <button onClick={() => getCardsInfo(2)}>New Game (Easy) </button>
+      <OverlayMessage
+        modalOpen={modalOpen || (cards.every(c => (c.match === true)) && cards.length > 0)}
+        setModalOpen={setModalOpen}
+        setCards={setCards}
+        turns={turns}
+      />
+      <Level getCardsInfo={getCardsInfo} />
+      <Status
+        player={player}
+        difficulity={difficulity}
+        turns={turns}
+      />
       <div className="card-grid">
         {cards.map(card => (
-          <Card key={card.id}
+          <Card
+            key={card.id}
             card={card}
             matching={matching}
-            flipped={false}
+            flipped={card === choiceOne || card === choiceTwo || card.match}
+            disabled={disabled}
           />
         ))}
       </div>
