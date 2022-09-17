@@ -2,7 +2,7 @@ import './OverlayMessage.css'
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
-export default function OverlayMessage({ modalOpen, setModalOpen,setCards,turns }) {
+export default function OverlayMessage({ modalOpen, setModalOpen,setCards,turns,score }) {
 
 
     function toggleModal() {
@@ -16,10 +16,10 @@ export default function OverlayMessage({ modalOpen, setModalOpen,setCards,turns 
             <Modal
                 isOpen={modalOpen}
                 onRequestClose={toggleModal}
-                contentLabel="You completed the game! CONGRATULATION"
+                contentLabel="You completed the game! CONGRATULATIONS"
                 className="mymodal"
             >
-                <div>You completed the game on turn <b>{turns}</b>! CONGRATULATION</div>
+                <div>You completed the game on turn <b>{turns}</b>! Final score: <b>{score}</b>! CONGRATULATIONS</div>
                 <button onClick={toggleModal}>Close</button>
             </Modal>
         </div>
