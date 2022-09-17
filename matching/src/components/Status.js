@@ -1,5 +1,5 @@
 import './Status.css';
-export default function Status({ player, difficulity, turns }) {
+export default function Status({ player, difficulity, turns, streak, score }) {
     return (
         <div id="scroller-right">
             <table className="tg">
@@ -20,6 +20,16 @@ export default function Status({ player, difficulity, turns }) {
                         <td className="tg-td">Turns</td>
                         <td className="tg-td">:</td>
                         <td className="tg-td">{turns}</td>
+                    </tr>
+                    <tr>
+                        <td className="tg-td">MATCH STREAK</td>
+                        <td className="tg-td">:</td>
+                        <td className="tg-td">{streak}</td>
+                    </tr>
+                    <tr>
+                        <td className="tg-td">SCORE</td>
+                        <td className="tg-td">:</td>
+                        <td className="tg-td">x{score}</td>
                     </tr>
                 </tbody>
             </table>

@@ -1,4 +1,4 @@
-export async function CreateGame(turn, deck, userId) {
+export async function CreateGame(turn, deck, userId, score) {
     var myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
@@ -8,7 +8,8 @@ export async function CreateGame(turn, deck, userId) {
     var raw = JSON.stringify({
         "turn": turn,
         "deck": deck,
-        "score": (deck * 2 - turn) / deck,
+        "score": score - (turn*10),
+        //"score": (deck * 2 - turn) / deck,
         "userId": userId
     });
 

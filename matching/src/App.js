@@ -19,6 +19,8 @@ function App() {
   const [player, setPlayer] = useState([])
   const [difficulity, setDifficulity] = useState("Choose the difficulity level")
   const [turns, setTurns] = useState(0)
+  const [score, setScore] = useState(0)
+  const [streak, setStreak] = useState(1)
   const [disabled, setDisabled] = useState(false)
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -59,21 +61,31 @@ function App() {
         setCards(e => {
           return e.map(card => {
             if (card.code === choiceOne.code) {
+			  //setScore(prevScore => prevScore + (100*streak))
+			  //setStreak(prevStreak => prevStreak +1)
               return { ...card, match: true }
             } else {
+			  
+			  
               return card
             }
           })
         })
+        setScore(prevScore => prevScore + (100*streak))
+		setStreak(prevStreak => prevStreak +1)
         console.log('Match!')
         setTimeout(() => resetTurn(), 1000)
       } else {
+		if(streak > 1)
+			  {
+			    setStreak(prevStreak => prevStreak -1)
+			  }
         setTimeout(() => resetTurn(), 1000)
       }
 
     }
     if (cards.every(c => (c.match === true))) {
-      CreateGame(turns, cards.length / 2, user.user_id);
+      CreateGame(turns, cards.length / 2, user.user_id, score);
     }
   }, [choiceOne, choiceTwo])
 
@@ -93,12 +105,15 @@ function App() {
         setModalOpen={setModalOpen}
         setCards={setCards}
         turns={turns}
+        score={score}
       />
       <Level getCardsInfo={getCardsInfo} />
       <Status
         player={player}
         difficulity={difficulity}
         turns={turns}
+        streak={streak}
+        score={score}
       />
       <div className="card-grid">
         {cards.map(card => (
