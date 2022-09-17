@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Card from './components/Card';
-import Level from './components/Level';
-import OverlayMessage from './components/OverlayMessage';
-import Status from './components/Status';
+import Card from './components/Card/Card';
+import Level from './components/Level/Level';
+import OverlayMessage from './components/OverlayMessage/OverlayMessage';
+import Status from './components/Status/Status';
 
 
 import { user } from './mock_data';
