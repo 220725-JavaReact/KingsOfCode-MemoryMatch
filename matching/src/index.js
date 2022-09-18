@@ -10,6 +10,18 @@ import LeaderBoard from './components/LeaderBoard/LeaderBoard';
 import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout'
 
+const axios = require('axios');
+
+let isLoggedIn = false;
+
+const login = (userId, password) => {
+  axios.get('url')
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => console.log(err));
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -18,9 +30,9 @@ root.render(
     <div className='container'>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/game' element={<App />} />
+        <Route path='/game' element={<App loggedIn={isLoggedIn}/>} />
         <Route path='/leader' element={<LeaderBoard />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login onLogin={login}/>} />
         <Route path='/logout' element={<Logout />} />
       </Routes>
     </div>
