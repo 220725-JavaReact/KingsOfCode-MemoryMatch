@@ -15,8 +15,7 @@ const Login = (props) => {
   }
 
   function onSubmit(e) {
-    e.preventDefault();
-    console.log('User: ' + userId + '\nPass: ' + password);
+    props.login(userId, password);
   }
 
   return (

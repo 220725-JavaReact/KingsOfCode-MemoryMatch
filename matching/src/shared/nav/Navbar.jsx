@@ -1,7 +1,22 @@
 import './Navbar.css';
 import { Link, } from "react-router-dom"
+import { useState } from 'react';
 
 const Navbar = (props) => {
+
+  const [displayText, setDisplayText] = useState('Login');
+  const [url, setUrl] = useState('/login');
+
+  function handleDisplay(e) {
+    if (props.displayHandler()) {
+      setUrl('/');
+      setDisplayText('Log Out')
+    } else {
+      setUrl('/login');
+      setDisplayText('Log In');
+    }
+  }
+
   return (
     <>
     <nav className='nav'>
@@ -14,10 +29,7 @@ const Navbar = (props) => {
         <Link to='/leader'>Leader Board</Link>
         </li>
         <li>
-          <Link to='/logout'>Log Out</Link>
-        </li>
-        <li>
-          <Link to='/login'>Log In</Link>
+        <Link to={url} onClick={handleDisplay}>{displayText}</Link>
         </li>
       </ul>
     </nav>
