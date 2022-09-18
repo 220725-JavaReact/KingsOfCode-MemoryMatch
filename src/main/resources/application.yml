@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    password: dLUdgYE5PfR*Q%Zy8TeH
+    url: jdbc:postgresql://koc.cn4hnlxj0nsu.us-east-1.rds.amazonaws.com:5432/matching
+    username: KingCoder
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8080
+springdoc:
+  swagger-ui:
+    path: /swagger
