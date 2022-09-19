@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {withRouter} from 'react-router-dom';
 
 const Registration = (props) => {
 
@@ -7,6 +8,7 @@ const Registration = (props) => {
   const[username, setUsername] = useState('');
   const[password, setPassword] = useState('');
   const[passwordConfirmation, setPasswordConfirmation] = useState('');
+  const axios = require('axios');
 
   function updateRealName(e) {
     setRealName(e.target.value);
@@ -31,35 +33,22 @@ const Registration = (props) => {
   function onSubmit(e) {
     e.preventDefault();
     if (password === passwordConfirmation) {
-      
-      var myHeaders = new Headers();
-      myHeaders.append("Accept", "application/json");
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", "Basic UDIwMDA5NjE0Mjk6bnNjYzEzMDA=");
-      
-      var raw = JSON.stringify({
-        "name": realName,
-        "email": email,
-        "login": username,
-        "password": password
-      });
 
-      var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-      };
-
-      console.log(raw);
-      fetch("/memorymatch/users")
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error: ' + error));
-
+      axios.post('/memorymatch/users', {
+        name: realName,
+        email: email,
+        login: username,
+        password: password
+      })
+        .then((res) => {
+          alert('Registration Successful!');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       clearForm();
     } else {
-      alert('Passords do not match.');
+      alert('Passwords do not match.');
       setPassword('');
       setPasswordConfirmation('');
     }
