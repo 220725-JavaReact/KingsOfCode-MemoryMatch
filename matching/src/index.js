@@ -8,32 +8,40 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import LeaderBoard from './components/LeaderBoard/LeaderBoard';
 import Login from './components/Login/Login';
-import Logout from './components/Logout/Logout'
+import Registration from './components/Registration/Registration';
 
 const axios = require('axios');
 
 let isLoggedIn = false;
+let userId;
 
+function displayLoginOrLogout() {
+  return isLoggedIn;
+}
+
+// update isLoggedIn and userId
 const login = (userId, password) => {
-  axios.get('url')
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => console.log(err));
+  // axios.get('http://localhost:8080/memorymatch/users')
+  // .then((res) => {
+  //   console.log(res);
+  // })
+  // .catch((err) => console.log(err));
+  console.log(userId);
+  console.log(password);
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Navbar />
+    <Navbar displayHandler={displayLoginOrLogout} />
     <div className='container'>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/game' element={<App loggedIn={isLoggedIn}/>} />
+        <Route path='/game' element={<App userId={userId}/>} />
         <Route path='/leader' element={<LeaderBoard />} />
-        <Route path='/login' element={<Login onLogin={login}/>} />
-        <Route path='/logout' element={<Logout />} />
+        <Route path='/login' element={<Login login={login} />} />
+        <Route path='/registration' element={<Registration />} />
       </Routes>
     </div>
     </BrowserRouter>

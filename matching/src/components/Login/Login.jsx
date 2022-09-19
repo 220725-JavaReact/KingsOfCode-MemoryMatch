@@ -1,5 +1,5 @@
-import './Login.css';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = (props) => {
 
@@ -16,7 +16,10 @@ const Login = (props) => {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log('User: ' + userId + '\nPass: ' + password);
+    props.login(userId, password);
+
+    setUserId('');
+    setPassword('');
   }
 
   return (
@@ -24,13 +27,13 @@ const Login = (props) => {
     <h1>Login</h1>
     <div className="formContainer">
     <form>
-      <label>Username:</label>
-      <input type="text" placeholder='Username' onChange={updateUser} />
-      <label>Password:</label>
-      <input type='password' placeholder='Password' onChange={updatePassword} />
-      {/* <input type='submit' className='button' value='Login' onSubmit={onSubmit} /> */}
-      <button value='Login' className='button' onClick={onSubmit}>Login</button>
+      <label>Username</label>
+      <input type="text" value={userId} placeholder='Username' onChange={updateUser} />
+      <label>Password</label>
+      <input type='password' value={password} placeholder='Password' onChange={updatePassword} />
+      <button onClick={onSubmit}>Login</button>
     </form>
+    <Link to='/registration'>Sign Up</Link>
     </div>
     </>
   )
