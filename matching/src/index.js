@@ -15,6 +15,10 @@ const axios = require('axios');
 let isLoggedIn = false;
 let appUserName;
 
+function logOut() {
+  isLoggedIn = false;
+}
+
 function displayLoginOrLogout() {
   return isLoggedIn;
 }
@@ -49,7 +53,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Navbar displayHandler={displayLoginOrLogout} />
+    <Navbar displayHandler={displayLoginOrLogout} logout={logOut} />
     <div className='container'>
       <Routes>
         <Route path='/' element={<Home />} />
