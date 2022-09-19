@@ -9,9 +9,9 @@ const Navbar = (props) => {
 
   function handleDisplay(e) {
     if (props.displayHandler()) {
+      props.logout();
       setUrl('/login');
       setDisplayText('Log In');
-      props.logout();
     } else {
       setUrl('/');
       setDisplayText('Log Out')
