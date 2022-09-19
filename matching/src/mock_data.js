@@ -104,6 +104,6 @@ export const cards = [
 
 
 export const user ={
-    "user_id" : "123242",
+    "user_id" : 6,
     "name" : "King of Code"
 }

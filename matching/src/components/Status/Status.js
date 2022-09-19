@@ -24,12 +24,12 @@ export default function Status({ player, difficulity, turns, streak, score }) {
                     <tr>
                         <td className="tg-td">MATCH STREAK</td>
                         <td className="tg-td">:</td>
-                        <td className="tg-td">{streak}</td>
+                        <td className="tg-td">x{streak}</td>
                     </tr>
                     <tr>
                         <td className="tg-td">SCORE</td>
                         <td className="tg-td">:</td>
-                        <td className="tg-td">x{score}</td>
+                        <td className="tg-td">{score}</td>
                     </tr>
                 </tbody>
             </table>

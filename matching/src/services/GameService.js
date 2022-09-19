@@ -2,6 +2,7 @@ export async function CreateGame(turn, deck, userId, score) {
     var myHeaders = new Headers();
     myHeaders.append("Accept", "application/json");
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Basic UDIwMDA5NjE0Mjk6bnNjYzEzMDA=");
 
     // logic to calculate score
     // score = [(total pair of cards * 2) - turns] % total pair of cards
@@ -25,3 +26,4 @@ export async function CreateGame(turn, deck, userId, score) {
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
 }
+

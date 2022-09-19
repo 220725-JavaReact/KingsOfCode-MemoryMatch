@@ -41,6 +41,9 @@ function App() {
           .map(card => ({ ...card, id: Math.random(), match: false }))
         setCards(shuffleCards)
         setTurns(0)
+        setScore(0)
+        setStreak(1)
+        //CreateGame(10, 20, 6, 980)
       });
   }
 
@@ -86,6 +89,7 @@ function App() {
     }
     if (cards.every(c => (c.match === true))) {
       CreateGame(turns, cards.length / 2, user.user_id, score);
+      console.log('Game is won!');
     }
   }, [choiceOne, choiceTwo])
 
