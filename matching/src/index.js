@@ -14,18 +14,37 @@ const axios = require('axios');
 
 let isLoggedIn = false;
 let userId;
+let appUserName;
 
 function displayLoginOrLogout() {
   return isLoggedIn;
 }
 
 // update isLoggedIn and userId
-const login = (userId, password) => {
-  // axios.get('http://localhost:8080/memorymatch/users')
-  // .then((res) => {
-  //   console.log(res);
-  // })
-  // .catch((err) => console.log(err));
+const login = (userName, password) => {
+  // replace line below with
+  // axios.get('/memorymatch/users/' + userName)
+  axios.get('/memorymatch/users/1')
+  .then((res) => {
+    console.log(res);
+    if(res.data.password == password) {
+      userId = res.data.id;
+      appUserName = res.data.name;
+      isLoggedIn = true;
+      alert('Log in successful');
+    }
+    else {
+      alert('Incorrect Username or Password');
+    }
+  })
+  .catch((err) => console.log(err));
+}
+
+function getUser() {
+  return {
+    id: userId,
+    name: appUserName
+  }
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -36,7 +55,7 @@ root.render(
     <div className='container'>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/game' element={<App userId={userId}/>} />
+        <Route path='/game' element={<App getUser={getUser}/>} />
         <Route path='/leader' element={<LeaderBoard />} />
         <Route path='/login' element={<Login login={login} />} />
         <Route path='/registration' element={<Registration />} />

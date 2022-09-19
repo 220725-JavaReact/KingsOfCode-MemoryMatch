@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Login = (props) => {
 
-  const [userId, setUserId] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
   function updateUser(e) {
-    setUserId(e.target.value);
+    setUserName(e.target.value);
   }
 
   function updatePassword(e) {
@@ -16,9 +16,9 @@ const Login = (props) => {
 
   function onSubmit(e) {
     e.preventDefault();
-    props.login(userId, password);
+    props.login(userName, password);
 
-    setUserId('');
+    setUserName('');
     setPassword('');
   }
 
@@ -28,7 +28,7 @@ const Login = (props) => {
     <div className="formContainer">
     <form>
       <label>Username</label>
-      <input type="text" value={userId} placeholder='Username' onChange={updateUser} />
+      <input type="text" value={userName} placeholder='Username' onChange={updateUser} />
       <label>Password</label>
       <input type='password' value={password} placeholder='Password' onChange={updatePassword} />
       <button onClick={onSubmit}>Login</button>

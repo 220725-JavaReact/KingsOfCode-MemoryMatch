@@ -12,7 +12,7 @@ import { CreateGame } from './services/GameService';
 
 
 
-function App() {
+function App(props) {
   // cards infomration
 
   const [cards, setCards] = useState([])
@@ -29,7 +29,8 @@ function App() {
     // write code here
     // ...
     // mock user data
-    setPlayer(user)
+    let newUser = props.getUser();
+    setPlayer(newUser)
   }
 
   const getCardsInfo = (num, level) => {
