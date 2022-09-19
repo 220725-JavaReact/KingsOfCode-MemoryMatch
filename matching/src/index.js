@@ -32,7 +32,7 @@ const login = (userName, password) => {
   .then((res) => {
     appUserName = userName;
     isLoggedIn = true;
-    userID = res.data;
+    userID = res.data.id;
     if(res.data.id != -1)
     {
 		alert('Login Successful');

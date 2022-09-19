@@ -17,8 +17,9 @@ const Login = (props) => {
 
   function onSubmit(e) {
     e.preventDefault();
-    return props.login(userName, password);
-
+    props.login(userName, password);
+	setUserName('');
+	setPassword('');
   }
 
   return (
@@ -30,7 +31,7 @@ const Login = (props) => {
       <input type="text" value={userName} placeholder='Username' onChange={updateUser} />
       <label>Password</label>
       <input type='password' value={password} placeholder='Password' onChange={updatePassword} />
-      <button onClick={() => {onSubmit ? navigate('/game'):navigate('/login')}}>Login</button>
+      <button onClick={onSubmit}>Login</button>
     </form>
     <Link to='/registration'>Sign Up</Link>
     </div>
