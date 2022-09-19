@@ -103,7 +103,7 @@ export const cards = [
 ]
 
 
-//export const user ={
-    //"user_id" : 6,
-    //"name" : "King of Code"
-//}
+export const user ={
+    "user_id" : 6,
+    "name" : "King of Code"
+}

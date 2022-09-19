@@ -4,9 +4,10 @@ import Card from './components/Card/Card';
 import Level from './components/Level/Level';
 import OverlayMessage from './components/OverlayMessage/OverlayMessage';
 import Status from './components/Status/Status';
+//import index from './index';
 
 
-import { user } from './index';
+import { user } from './mock_data';
 import { getCards } from './services/CardService';
 import { CreateGame } from './services/GameService';
 
@@ -41,7 +42,8 @@ function App(props) {
         setTurns(0)
         setScore(0)
         setStreak(1)
-        //CreateGame(10, 20, 6, 980)
+        //CreateGame(10, 20, user.user_id, 1290)
+        console.log("User ID: " + user.user_id);
       });
   }
 
@@ -62,8 +64,6 @@ function App(props) {
         setCards(e => {
           return e.map(card => {
             if (card.code === choiceOne.code) {
-			  //setScore(prevScore => prevScore + (100*streak))
-			  //setStreak(prevStreak => prevStreak +1)
               return { ...card, match: true }
             } else {
 			  
@@ -85,6 +85,7 @@ function App(props) {
       }
 
     }
+    
     if(cards.length > 9)
     {
 	    if (cards.every(c => (c.match === true))) {

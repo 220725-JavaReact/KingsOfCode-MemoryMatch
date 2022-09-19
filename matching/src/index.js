@@ -29,10 +29,11 @@ const login = (userName, password) => {
     login: userName,
     password: password
   })
-  .then((res) => {
+  .then((res => {
     appUserName = userName;
     isLoggedIn = true;
     userID = res.data.id;
+    //console.log("INDEX user id: " +userID);
     if(res.data.id != -1)
     {
 		alert('Login Successful');
@@ -41,16 +42,13 @@ const login = (userName, password) => {
 	{
 		alert('Login Failed');
 	}
-  })
+  }))
   .catch((err) => {
     console.log(err);
     alert('Login Failed');
   });
 }
-export const user ={
-    "user_id" : userID,
-    "name" : appUserName
-}
+
 function getUser() {
   // id should not be hardcoded
   // backend response from login() should
@@ -84,4 +82,7 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-
+//export const user ={
+//    "user_id" : userID,
+//    "name" : appUserName
+//}
