@@ -26,8 +26,6 @@ const login = (userId, password) => {
   //   console.log(res);
   // })
   // .catch((err) => console.log(err));
-  console.log(userId);
-  console.log(password);
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

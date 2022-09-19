@@ -31,7 +31,32 @@ const Registration = (props) => {
   function onSubmit(e) {
     e.preventDefault();
     if (password === passwordConfirmation) {
-      // Axios Post
+      
+      var myHeaders = new Headers();
+      myHeaders.append("Accept", "application/json");
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", "Basic UDIwMDA5NjE0Mjk6bnNjYzEzMDA=");
+      
+      var raw = JSON.stringify({
+        "name": realName,
+        "email": email,
+        "login": username,
+        "password": password
+      });
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+
+      console.log(raw);
+      fetch("/memorymatch/users")
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error: ' + error));
+
       clearForm();
     } else {
       alert('Passords do not match.');
