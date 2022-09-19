@@ -21,7 +21,7 @@ export async function CreateGame(turn, deck, userId, score) {
         redirect: 'follow'
     };
     console.log(raw);
-    fetch("http://localhost:8080/memorymatch/games", requestOptions)
+    fetch("/memorymatch/games", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
