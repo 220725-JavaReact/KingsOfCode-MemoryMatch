@@ -14,6 +14,7 @@ const Navbar = (props) => {
     } else {
       setUrl('/login');
       setDisplayText('Log In');
+      props.logout();
     }
   }
 
