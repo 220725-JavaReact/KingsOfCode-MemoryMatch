@@ -18,7 +18,7 @@ import com.koc.MemoryMatch.models.User;
 
 
 @Repository
-public interface UserDao extends JpaRepository<User, Long>{	
+public interface UserDao extends JpaRepository<User, Long>{
 }
 
 

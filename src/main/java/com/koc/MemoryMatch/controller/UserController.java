@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.koc.MemoryMatch.dao.UserDao;
-import com.koc.MemoryMatch.models.User;
+import com.koc.MemoryMatch.dao.*;
+import com.koc.MemoryMatch.models.*;
 import com.koc.MemoryMatch.exceptions.*;
 import com.koc.MemoryMatch.utils.*;
 
