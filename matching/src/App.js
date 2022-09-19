@@ -26,9 +26,6 @@ function App(props) {
 
   // get user info from API
   const getPlayerInfo = () => {
-    // write code here
-    // ...
-    // mock user data
     let newUser = props.getUser();
     setPlayer(newUser)
   }

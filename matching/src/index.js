@@ -13,36 +13,34 @@ import Registration from './components/Registration/Registration';
 const axios = require('axios');
 
 let isLoggedIn = false;
-let userId;
 let appUserName;
 
 function displayLoginOrLogout() {
   return isLoggedIn;
 }
 
-// update isLoggedIn and userId
 const login = (userName, password) => {
-  // replace line below with
-  // axios.get('/memorymatch/users/' + userName)
-  axios.get('/memorymatch/users/1')
-  .then((res) => {
-    console.log(res);
-    if(res.data.password == password) {
-      userId = res.data.id;
-      appUserName = res.data.name;
-      isLoggedIn = true;
-      alert('Log in successful');
-    }
-    else {
-      alert('Incorrect Username or Password');
-    }
+  axios.post('/memorymatch/login', {
+    login: userName,
+    password: password
   })
-  .catch((err) => console.log(err));
+  .then(() => {
+    appUserName = userName;
+    isLoggedIn = true;
+    alert('Login Successful');
+  })
+  .catch((err) => {
+    console.log(err);
+    alert('Login Failed');
+  });
 }
 
 function getUser() {
+  // id should not be hardcoded
+  // backend response from login() should
+  // return the id and name
   return {
-    id: userId,
+    id: 1,
     name: appUserName
   }
 }
