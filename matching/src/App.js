@@ -43,7 +43,7 @@ function App() {
         setTurns(0)
         setScore(0)
         setStreak(1)
-        //CreateGame(10, 20, 6, 980)
+        CreateGame(10, 20, 6, 980)
       });
   }
 
