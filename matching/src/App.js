@@ -6,7 +6,7 @@ import OverlayMessage from './components/OverlayMessage/OverlayMessage';
 import Status from './components/Status/Status';
 
 
-import { user } from './mock_data';
+import { user } from './index';
 import { getCards } from './services/CardService';
 import { CreateGame } from './services/GameService';
 

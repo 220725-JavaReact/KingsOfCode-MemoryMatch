@@ -14,6 +14,7 @@ const axios = require('axios');
 
 let isLoggedIn = false;
 let appUserName;
+let userID;
 
 function displayLoginOrLogout() {
   return isLoggedIn;
@@ -24,23 +25,34 @@ const login = (userName, password) => {
     login: userName,
     password: password
   })
-  .then(() => {
+  .then((res) => {
     appUserName = userName;
     isLoggedIn = true;
-    alert('Login Successful');
+    userID = res.data;
+    if(res.data.id != -1)
+    {
+		alert('Login Successful');
+	}
+	else
+	{
+		alert('Login Failed');
+	}
   })
   .catch((err) => {
     console.log(err);
     alert('Login Failed');
   });
 }
-
+export const user ={
+    "user_id" : userID,
+    "name" : appUserName
+}
 function getUser() {
   // id should not be hardcoded
   // backend response from login() should
   // return the id and name
   return {
-    id: 1,
+    id: userID,
     name: appUserName
   }
 }
@@ -67,3 +79,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
